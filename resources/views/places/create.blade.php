@@ -2,6 +2,7 @@
 
 @section('styles')
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+    <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder/dist/esri-leaflet-geocoder.css"/>
 @endsection
 
 @section('content')
@@ -87,6 +88,54 @@
 
 @section('scripts')
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
-    <script src="https://unpkg.com/esri-leaflet"></script>
+    <script src="https://unpkg.com/esri-leaflet" defer></script>
+    <script src="https://unpkg.com/esri-leaflet-geocoder" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if(document.querySelector('#mapa')){
+                const lat = 20.666332695977;
+                const lng = -103.392177745699;
+                const apiKey = "{{env('API_KEY_ESRI_LEAFLET')}}";
 
+                const map = L.map('mapa').setView([lat, lng], 16);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                let marker;
+
+                // agregar el pin
+                marker = new L.marker([lat, lng],{
+                    draggable: true,
+                    autoPan: true
+                }).addTo(map);
+
+                //Geocode service
+                const geocodeService =  L.esri.Geocoding.reverseGeocode({apikey: apiKey});
+
+                //detect move marker
+                marker.on('moveend', function (e){
+                    marker = e.target;
+                    let position = marker.getLatLng();
+                    let latitud = position.lat;
+                    let longitud = position.lng;
+                    console.log(latitud);
+                    console.log(longitud);
+
+                    //center pin automatically
+                    map.panTo(new L.LatLng(latitud, longitud));
+
+                    //Reverse Geocoding to pin relocate
+
+                    geocodeService.latlng(position).run(function (error, result) {
+                        console.log(result.address);
+                        marker.bindPopup(result.address.LongLabel);
+                        marker.openPopup();
+                    });
+
+                });
+            }
+        });
+    </script>
 @endsection()
