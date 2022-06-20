@@ -14,7 +14,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        return 'desde create';
+        return view('places.create');
     }
 
     /**
