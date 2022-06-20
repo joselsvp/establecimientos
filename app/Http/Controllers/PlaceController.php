@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Place;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,8 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        return view('places.create');
+        $categories = Category::all();
+        return view('places.create', compact('categories'));
     }
 
     /**
