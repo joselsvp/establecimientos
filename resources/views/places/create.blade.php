@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('styles')
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ==" crossorigin="" />
+@endsection
+
 @section('content')
     <div class="container">
         <h1 class="text-center mt-4"> Registrar establecimiento</h1>
@@ -60,16 +64,29 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="name">Dirección</label>
-                        <input type="text" id="address" name="address" class="form-control m-2"
-                               placeholder="Ingrese dirección">
+                        <label for="form_searching_map">Ubica tu establecimiento en el mapa</label>
+                        <input type="text" id="form_searching_map" name="address" class="form-control m-2" placeholder="Ingrese dirección">
                         <p class="text-secondary mt-5 mb-3 text-center">Se añadirá en el mapa un aproximado de la dirrección ingresada</p>
+                    </div>
+
+                    <div class="form-group">
+                        <div id="mapa" style="height: 400px"></div>
+                    </div>
+                    <p class="information"> Confirma que los siguientes campos son correctos</p>
+                    <div class="form-group">
+                        <label for="address">Dirección</label>
+                        <input type="text" id="address" class="form-control @error('address') is-invalid @enderror">
                     </div>
 
                     <input type="submit" value="Guardar" class="btn btn-success">
                 </fieldset>
-
             </form>
         </div>
     </div>
 @endsection
+
+@section('scripts')
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ==" crossorigin=""></script>
+    <script src="https://unpkg.com/esri-leaflet"></script>
+
+@endsection()
