@@ -8,23 +8,13 @@ use Illuminate\Http\Request;
 class PlaceController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        //
+        return 'desde create';
     }
 
     /**
@@ -57,7 +47,7 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        //
+        return 'desde edit';
     }
 
     /**

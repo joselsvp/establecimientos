@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PlaceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,11 +13,15 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('welcome'); 
+    return view('welcome');
+});
+Route::group(['middleware' => ['auth', 'verified']], function(){
+    Route::get('/establecimiento/create', [PlaceController::class, 'create'])->name('establecimiento.create');
+    Route::get('/establecimiento/edit', [PlaceController::class, 'edit'])->name('establecimiento.edit');
 });
 
 Auth::routes(['verify' => true]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
