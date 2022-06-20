@@ -26,6 +26,7 @@ return new class extends Migration
             $table->foreignId('category_id')->constrained();
             $table->string('country');
             $table->string('address');
+            /*
             $table->string('subdivision');
             $table->string('latitude');
             $table->string('longitude');
@@ -33,7 +34,7 @@ return new class extends Migration
             $table->time('opening');
             $table->time('close');
             $table->uuid('uuid');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained();*/
             $table->timestamps();
         });
     }

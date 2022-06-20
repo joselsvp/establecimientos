@@ -27,7 +27,16 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->validate([
+           'name' => 'required',
+            'category_id' => 'required',
+            'country' => 'required',
+            'address' => 'required',
+        ]);
+        $establecimiento = new Place($data);
+        $establecimiento->save();
+
+        return redirect()->route('home');
     }
 
     /**
