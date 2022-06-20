@@ -53,18 +53,6 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="category">País</label>
-                        <select name="country" id="country" class="form-control m-2 @error('country') is-invalid  @enderror">
-                            <option value="" selected disabled>-- Seleccione un país --</option>
-                            <option value="1">México</option>
-                        </select>
-                        @error('country')
-                        <div class="invalid-feeback">
-                            {{$message}}
-                        </div>
-                        @enderror
-                    </div>
-                    <div class="form-group">
                         <label for="form_searching_map">Ubica tu establecimiento en el mapa</label>
                         <input type="text" id="form_searching_map" name="address" class="form-control m-2" placeholder="Ingrese dirección">
                         <p class="text-secondary mt-5 mb-3 text-center">Se añadirá en el mapa un aproximado de la dirrección ingresada</p>
@@ -74,10 +62,33 @@
                         <div id="mapa" style="height: 400px"></div>
                     </div>
                     <p class="information"> Confirma que los siguientes campos son correctos</p>
+
+                    <div class="form-group">
+                        <label for="category">País</label>
+                        <input type="text" id="country" class="form-control @error('country') is-invalid @enderror">
+                    </div>
                     <div class="form-group">
                         <label for="address">Dirección</label>
                         <input type="text" id="address" class="form-control @error('address') is-invalid @enderror">
                     </div>
+
+                    <div class="form-group">
+                        <label for="address">Colonia</label>
+                        <input type="text" id="neighborhood" class="form-control @error('neighborhood') is-invalid @enderror">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Código Postal</label>
+                        <input type="text" id="postal_code" class="form-control @error('postal_code') is-invalid @enderror">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Teléfono</label>
+                        <input type="text" id="phone" name="phone" class="form-control @error('phone') is-invalid @enderror">
+                    </div>
+
+                    <input type="hidden" name="latitude" id="latitude">
+                    <input type="hidden" name="longitude" id="longitude">
 
                     <input type="submit" value="Guardar" class="btn btn-success">
                 </fieldset>
@@ -120,21 +131,29 @@
                     let position = marker.getLatLng();
                     let latitud = position.lat;
                     let longitud = position.lng;
-                    console.log(latitud);
-                    console.log(longitud);
 
                     //center pin automatically
                     map.panTo(new L.LatLng(latitud, longitud));
 
                     //Reverse Geocoding to pin relocate
-
                     geocodeService.latlng(position).run(function (error, result) {
-                        console.log(result.address);
                         marker.bindPopup(result.address.LongLabel);
                         marker.openPopup();
-                    });
 
+                        //fill fields
+                        fillFields(result);
+                    });
                 });
+
+                function fillFields(result){
+                    console.log(result);
+                    document.querySelector("#address").value = result.address.Address || '';
+                    document.querySelector("#neighborhood").value = result.address.Neighborhood || '';
+                    document.querySelector("#country").value = result.address.CnTryName || '';
+                    document.querySelector("#postal_code").value = result.address.Postal || '';
+                    document.querySelector("#latitude").value = result.latlng.lat || '';
+                    document.querySelector("#longitude").value = result.latlng.lng || '';
+                }
             }
         });
     </script>
