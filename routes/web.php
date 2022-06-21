@@ -20,6 +20,9 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::get('/establecimiento/create', [PlaceController::class, 'create'])->name('establecimiento.create');
     Route::post('/establecimiento', [PlaceController::class, 'store'])->name('establecimiento.store');
     Route::get('/establecimiento/edit', [PlaceController::class, 'edit'])->name('establecimiento.edit');
+
+    //images
+    Route::post('images/store', [\App\Http\Controllers\ImageController::class, 'store'])->name('images.store');
 });
 
 Auth::routes(['verify' => true]);
