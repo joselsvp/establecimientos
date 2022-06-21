@@ -35,9 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //detect move marker
         marker.on('moveend', function (e){
-            //clear pins
-            markers.clearLayers();
-
             marker = e.target;
             let position = marker.getLatLng();
             let latitude = position.lat;
@@ -59,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 marker.openPopup();
 
                 if(isDynamic){
-                    map.setView(result.latlng)
+                    map.setView(result.latlng);
                 }
 
                 marker = new L.marker(result.latlng,{
