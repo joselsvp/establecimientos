@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         //detect move marker
         marker.on('moveend', function (e){
+            //clear pins
+            markers.clearLayers();
+
             marker = e.target;
             let position = marker.getLatLng();
             let latitude = position.lat;
@@ -51,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function locationInMap(position, isDynamic = false){
-            console.log(position)
             geocodeService.latlng(position).run(function (error, result) {
                 marker.bindPopup(result.address.LongLabel);
                 marker.openPopup();
@@ -78,7 +80,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 //clear pins
                 markers.clearLayers();
 
-                provider.search({query: e.target.value + ' Campeche MX '}).then(result => {
+                provider.search({query: e.target.value}).then(result => {
                     if(result){
                         locationInMap(result[0].bounds[0], true)
                     }
