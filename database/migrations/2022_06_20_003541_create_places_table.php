@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('phone');
             $table->time('opening');
             $table->time('close');
-            $table->time('image');
+            $table->string('image');
             $table->uuid('uuid');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

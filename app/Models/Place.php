@@ -12,7 +12,18 @@ class Place extends Model
     protected $fillable = [
         'name',
         'category_id',
+        'image',
         'country',
         'address',
+        'neighborhood',
+        'postal_code',
+        'phone',
+        'description',
+        'opening',
+        'latitude',
+        'longitude',
+        'close',
+        'uuid',
+        'user_id'
     ];
 }
