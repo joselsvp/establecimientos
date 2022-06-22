@@ -2,8 +2,10 @@ import { OpenStreetMapProvider } from 'leaflet-geosearch';
 const provider = new OpenStreetMapProvider();
 document.addEventListener('DOMContentLoaded', () => {
     if(document.querySelector('#mapa')){
-        const lat = 20.666332695977;
-        const lng = -103.392177745699;
+        const lat = document.querySelector('#latitude').value == '' ? 20.666332695977 : document.querySelector('#latitude').value ;
+        const lng = document.querySelector('#longitude').value == '' ? -103.392177745699 : document.querySelector('#longitude').value;
+        console.log(document.querySelector('#latitude').value);
+        console.log(document.querySelector('#longitude').value);
         const apiKey = "AAPK5318093df0f640d68414cd313cc394bev9yQaeSRlmPH9hYprhb6ph4GOCIKFW7jpIzix6basuzTyB5rwnL3QZGthl8C5L0k";
 
         const map = L.map('mapa').setView([lat, lng], 16);

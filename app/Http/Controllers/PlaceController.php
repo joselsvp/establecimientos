@@ -75,7 +75,7 @@ class PlaceController extends Controller
         $place->user_id = auth()->user()->id;
         $place->save();
 
-        dd('guardado');
+        return back()->with('status', 'Información almacenada correctamente');
     }
 
     /**
