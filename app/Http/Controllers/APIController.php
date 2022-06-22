@@ -11,4 +11,9 @@ class APIController extends Controller
         $categories = Category::all();
         return response()->json($categories);
     }
+
+    public function showCategory(Category $category){
+        return response()->json($category);
+    }
+
 }
