@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use Intervention\Image\Facades\Image;
 
 class ImageController extends Controller
@@ -39,13 +40,21 @@ class ImageController extends Controller
 
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Image  $image
-     * @return \Illuminate\Http\Response
+     * Destroy image to server and database
      */
-    public function destroy(Image $image)
+    public function destroy(Request $request)
     {
-        //
+        $image = $request->get('image');
+        if(File::exists('storage/' . $image)){
+            File::delete('storage/' . $image);
+        }
+
+        $response = [
+            'message' => 'Imagen eliminada',
+            'image' => $image
+        ];
+
+        \App\Models\Image::where('url', '=', $image)->delete();
+        return response()->json($response);
     }
 }

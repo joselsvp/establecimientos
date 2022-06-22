@@ -23,6 +23,7 @@ Route::group(['middleware' => ['auth', 'verified']], function(){
 
     //images
     Route::post('images/store', [\App\Http\Controllers\ImageController::class, 'store'])->name('images.store');
+    Route::post('images/destroy', [\App\Http\Controllers\ImageController::class, 'destroy'])->name('images.destroy');
 });
 
 Auth::routes(['verify' => true]);
