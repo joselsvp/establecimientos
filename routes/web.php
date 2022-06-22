@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', \App\Http\Controllers\MainController::class)->name('inicio');
+
 Route::group(['middleware' => ['auth', 'verified']], function(){
     Route::get('/establecimiento/create', [PlaceController::class, 'create'])->name('establecimiento.create');
     Route::post('/establecimiento', [PlaceController::class, 'store'])->name('establecimiento.store');
