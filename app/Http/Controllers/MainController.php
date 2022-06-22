@@ -14,6 +14,6 @@ class MainController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return 'desde inicio controller';
+        return view('main.index');
     }
 }
