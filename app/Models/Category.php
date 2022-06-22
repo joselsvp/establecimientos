@@ -14,4 +14,9 @@ class Category extends Model
     {
         return 'slug';
     }
+
+    //relation one to many category and places
+    public function places(){
+        return $this->hasMany(Place::class);
+    }
 }

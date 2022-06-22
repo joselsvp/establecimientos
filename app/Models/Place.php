@@ -26,4 +26,9 @@ class Place extends Model
         'uuid',
         'user_id'
     ];
+
+    //table places have category_id, then Category::class belongs to category
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
 }

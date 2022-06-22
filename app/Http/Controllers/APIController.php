@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Place;
 use Illuminate\Http\Request;
 
 class APIController extends Controller
@@ -13,7 +14,9 @@ class APIController extends Controller
     }
 
     public function showCategory(Category $category){
-        return response()->json($category);
+        $places = Place::where('category_id', '=' , $category->id)->with('category')->get();
+
+        return response()->json($places);
     }
 
 }
