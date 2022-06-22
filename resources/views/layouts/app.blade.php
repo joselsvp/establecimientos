@@ -21,6 +21,11 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
+    @if(session('status'))
+        <div class="alert alert-primary" role="alert">
+            {{session('status')}}
+        </div>
+    @endif
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">

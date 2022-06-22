@@ -30,9 +30,11 @@ return new class extends Migration
             $table->string('postal_code')->nullable();
             $table->string('latitude')->nullable();
             $table->string('longitude')->nullable();
+            $table->string('description')->nullable();
             $table->string('phone');
             $table->time('opening');
             $table->time('close');
+            $table->string('image');
             $table->uuid('uuid');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();

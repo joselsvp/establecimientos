@@ -41,4 +41,9 @@ class User extends Authenticatable implements  MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //relation 1:1 between user and place
+    public function place(){
+        return $this->hasOne(Place::class);
+    }
 }
