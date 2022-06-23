@@ -18,5 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/categorias', [\App\Http\Controllers\APIController::class, 'getAllCategories'])->name('categorias');
-Route::get('/categorias/{category}', [\App\Http\Controllers\APIController::class, 'showCategory'])->name('categoria');
+Route::get('/places', [\App\Http\Controllers\APIController::class, 'getAllPlaces'])->name('places');
+Route::get('/places/{category}', [\App\Http\Controllers\APIController::class, 'showPlace'])->name('place');

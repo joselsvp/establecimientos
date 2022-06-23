@@ -8,12 +8,13 @@ use Illuminate\Http\Request;
 
 class APIController extends Controller
 {
-    public function getAllCategories() {
-        $categories = Category::all();
-        return response()->json($categories);
+    public function getAllPlaces() {
+        $places = Place::with('category')->get();
+
+        return response()->json($places);
     }
 
-    public function showCategory(Category $category){
+    public function showPlace(Category $category){
         $places = Place::where('category_id', '=' , $category->id)->with('category')->get();
 
         return response()->json($places);
