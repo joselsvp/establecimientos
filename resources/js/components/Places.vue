@@ -8,6 +8,13 @@
                     <img class="card-img-top" alt="estableciento" :src="`storage/${place.image}`">
                     <div class="card-body">
                         <h3 class="card-title-text-primary font-weight-bold">{{place.name}}</h3>
+                        <p class="card-text">{{place.address}}</p>
+                        <p class="card-text">
+                            <span class="font-weight-bold">Horario:</span>
+                            {{place.opening}} - {{place.close}}
+                        </p>
+
+                        <a class="btn btn-primary d-block">Ver lugar</a>
                     </div>
                 </div>
             </div>
