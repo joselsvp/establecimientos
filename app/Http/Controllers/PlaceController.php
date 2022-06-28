@@ -97,7 +97,8 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        return 'desde edit';
+        $categories = Category::all();
+        return view('places.edit', compact('categories'));
     }
 
     /**

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', \App\Http\Controllers\MainController::class)->name('inicio');
 
 Route::group(['middleware' => ['auth', 'verified']], function(){
-    Route::get('/establecimiento/create', [PlaceController::class, 'create'])->name('establecimiento.create');
+    Route::get('/establecimiento/create', [PlaceController::class, 'create'])->name('establecimiento.create')->middleware('review');
     Route::post('/establecimiento', [PlaceController::class, 'store'])->name('establecimiento.store');
     Route::get('/establecimiento/edit', [PlaceController::class, 'edit'])->name('establecimiento.edit');
 
