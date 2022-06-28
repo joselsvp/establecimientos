@@ -8,7 +8,7 @@
  */
 :root {
   --bs-blue: #0d6efd;
-  --bs-indigo: #6610f2;
+  --bs-indigo: #1c6eda;
   --bs-purple: #6f42c1;
   --bs-pink: #d63384;
   --bs-red: #dc3545;
@@ -10272,13 +10272,13 @@ textarea.form-control-lg {
   }
 }
 body {
-  font-family: "Lato", sans-serif;
+  font-family: "-apple-system", sans-serif;
   background-color: #f8fafc;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
   font-weight: 900;
-  color: #6610f2;
+  color: #1c6eda;
 }
 
 #dropzone {
@@ -10286,21 +10286,21 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4 {
 }
 
 .text-primary {
-  color: #6610f2 !important;
+  color: #1c6eda !important;
 }
 
 .navbar.bg-white {
-  background-color: #6610f2 !important;
+  background-color: #1c6eda !important;
 }
 .navbar.bg-white a {
   color: white !important;
 }
 
 .navbar-nav .dropdown-menu {
-  background: #6610f2;
+  background: #1c6eda;
 }
 .navbar-nav .dropdown-menu a:hover {
-  background: #6610f2;
+  background: #1c6eda;
 }
 
 .navbar.bg-white .navbar-brand {
@@ -10317,12 +10317,12 @@ legend {
 }
 
 .btn-primary {
-  background-color: #6610f2;
+  background-color: #1c6eda;
   font-weight: bold;
   text-transform: uppercase;
 }
 .btn-primary:hover {
-  background-color: #510bc4;
+  background-color: #1657ad;
 }
 
 .alert-primary {
@@ -10331,5 +10331,5 @@ legend {
   margin: 0;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #6610f2;
+  color: #1c6eda;
 }
